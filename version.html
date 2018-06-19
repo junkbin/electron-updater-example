@@ -7,7 +7,10 @@
   Hello Wrorld!!
   Every 60 SECON CHECK FOR UPDATE AUTO BUTTON BASED
   <br>
-  <button id="updateBtn" style="display: none;">UPDATE!!!!!</button> 
+  <button id="updateBtn" onclick="pingpong();">PINGPONG</button> 
+  <br>
+  <button id="updateBtn" style="display: none;" onclick="update()">UPDATE!!!!!</button> 
+  <br>
   Current version: <span id="version">vX.Y.Z</span>
 
   <div id="messages" onclick="update();"></div>
@@ -31,13 +34,18 @@ ipcRenderer.on('message', function(event, text, updateOption) {
 });
 
 function update(){
-  ipcRenderer.sendSync('download-update-true');
+  ipcRenderer.send('download-update-true');
   document.getElementById("updateBtn").style.display = "none";
 }
 
 ipcRenderer.on('error', function(event, err){
   console.log(err);
 });
+
+
+function pingpong(){
+  ipcRenderer.send('ping-pong');
+};
 
 </script>
 </body>

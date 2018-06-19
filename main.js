@@ -128,9 +128,6 @@ app.on('window-all-closed', () => {
 // look in the previous section to see them being used.
 //-------------------------------------------------------------------
 autoUpdater.autoDownload = false;
-app.on('ready', function()  {
-  autoUpdater.checkForUpdates();
-});
 autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
 });
@@ -155,9 +152,17 @@ autoUpdater.on('update-downloaded', (info) => {
 
 ipcMain.on("download-update-true", (event)=>{
   try{
-    autoUpdater.autoDownload = false;
     autoUpdater.downloadUpdate();
   }catch(err){
     win.webContents.send('error', err);
   }
+});
+
+ipcMain.on("ping-pong", (event)=>{
+  console.log(event);
+});
+
+
+app.on('ready', function()  {
+  autoUpdater.checkForUpdates();
 });
