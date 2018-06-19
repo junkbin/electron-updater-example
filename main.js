@@ -129,15 +129,34 @@ app.on('window-all-closed', () => {
 //-------------------------------------------------------------------
 autoUpdater.autoDownload = false;
 autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
+  try{
+    sendStatusToWindow('Checking for update...');
+  }catch(err){
+    console.log(err);
+  }
+  
 });
 autoUpdater.on('update-available', (info) => {
-  sendStatusToWindow('Update available...', true);
+  try{
+    sendStatusToWindow('Update available...', true);
+  }catch(err){
+    console.log(err);
+  }
 });
 autoUpdater.on('update-not-available', (info) => {
-  sendStatusToWindow('Update Not Available...');
+  
+  try{
+    sendStatusToWindow('Update Not Available...');
+  }catch(err){
+    console.log(err);
+  }
 })
 autoUpdater.on('error', (err) => {
+  try{
+    console.log(err);
+  }catch(err){
+    console.log(err);
+  }
 })
 autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
@@ -158,11 +177,15 @@ ipcMain.on("download-update-true", (event)=>{
   }
 });
 
-ipcMain.on("ping-pong", (event)=>{
+ipcMain.on("ping-pong", (event, data)=>{
   console.log(event);
 });
 
 
 app.on('ready', function()  {
-  autoUpdater.checkForUpdates();
+  try{
+    autoUpdater.checkForUpdates();
+  }catch(err){
+    console.log(err);
+  }
 });

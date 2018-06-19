@@ -1,6 +1,6 @@
 {
   "name": "electron-updater-example",
-  "version": "0.7.1",
+  "version": "0.7.11",
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "Matt Haggard",
@@ -21,9 +21,7 @@
         }
       ]
     },
-    "mac": {
-      "target": "dmg"
-    },
+    
     "publish": [
       {
         "provider": "github",
