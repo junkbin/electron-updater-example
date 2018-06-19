@@ -4,7 +4,36 @@
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "Matt Haggard",
+
+  "repository": {
+    "url": "https://github.com/junkbin/electron-updater-example"
+  },
+
+  "build": {
+    "appId": "test-auto-updater",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "releaseType": "draft"
+      }
+    ]
+  },
+
   "scripts": {
+    "start" : "electron .",
     "publish": "build -p always"
   },
   "devDependencies": {
@@ -16,7 +45,7 @@
     "electron-updater": "^2.21.4"
   },
   "build": {
-    "appId": "com.github.iffy.electronupdaterexample",
+    "appId": "electronupdaterexample",
     "mac": {
       "category": "your.app.category.type",
       "target": [
