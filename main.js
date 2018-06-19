@@ -129,9 +129,7 @@ app.on('window-all-closed', () => {
 //-------------------------------------------------------------------
 autoUpdater.autoDownload = false;
 app.on('ready', function()  {
-  setInterval(function(){
-    autoUpdater.checkForUpdates();
-  }, 30000);
+  autoUpdater.checkForUpdates();
 });
 autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
