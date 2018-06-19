@@ -153,5 +153,5 @@ autoUpdater.on('update-downloaded', (info) => {
 })
 
 ipcMain.on("download-update-true", function(){
-   autoUpdater.doDownloadUpdate();
+   autoUpdater.downloadUpdate();
 });
