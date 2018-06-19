@@ -4,9 +4,12 @@
   <title>Electron Updater Example</title>
 </head>
 <body>
-  Every 60 SECON CHECK FOR UPDATE> 
+  Every 60 SECON CHECK FOR UPDATE AUTO
+  <br>
+  <button id="updateBtn" style="display: none;">UPDATE!!!!!</button> 
   Current version: <span id="version">vX.Y.Z</span>
-  <div id="messages"></div>
+
+  <div id="messages" onclick="update();"></div>
 <script>
 // Display the current version
 let version = window.location.hash.substring(1);
@@ -14,12 +17,22 @@ document.getElementById('version').innerText = version;
 
 // Listen for messages
 const {ipcRenderer} = require('electron');
-ipcRenderer.on('message', function(event, text) {
+ipcRenderer.on('message', function(event, text, updateOption) {
   var container = document.getElementById('messages');
   var message = document.createElement('div');
   message.innerHTML = text;
-  container.appendChild(message);
-})
+  // container.appendChild(message);
+  container.insertBefore(message, container.firstChild);
+
+  if(updateOption){
+    document.getElementById("updateBtn").style.display = "block";
+  }
+});
+
+function update(){
+  ipcRenderer.sendSync('download-update-true');
+}
+
 </script>
 </body>
 </html>
