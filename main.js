@@ -152,6 +152,11 @@ autoUpdater.on('update-downloaded', (info) => {
   autoUpdater.quitAndInstall();  
 })
 
-ipcMain.on("download-update-true", function(){
-   autoUpdater.downloadUpdate();
+ipcMain.on("download-update-true", (event)=>{
+  try{
+    autoUpdater.autoDownload = false;
+    autoUpdater.downloadUpdate();
+  }catch(err){
+    win.webContents.send('error', err);
+  }
 });

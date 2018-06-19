@@ -35,6 +35,10 @@ function update(){
   document.getElementById("updateBtn").style.display = "none";
 }
 
+ipcRenderer.on('error', function(event, err){
+  console.log(err);
+});
+
 </script>
 </body>
 </html>
