@@ -110,7 +110,10 @@ app.on('window-all-closed', () => {
 // app quits.
 //-------------------------------------------------------------------
 app.on('ready', function()  {
-  autoUpdater.checkForUpdatesAndNotify();
+  setInterval(function(){
+    autoUpdater.checkForUpdatesAndNotify();
+  }, 60000);
+  
 });
 
 //-------------------------------------------------------------------
