@@ -20,7 +20,7 @@ const {ipcRenderer} = require('electron');
 ipcRenderer.on('message', function(event, text, updateOption) {
   var container = document.getElementById('messages');
   var message = document.createElement('div');
-  message.innerHTML = text;
+  message.innerHTML = text + " :: " + updateOption;
   // container.appendChild(message);
   container.insertBefore(message, container.firstChild);
 

@@ -54,9 +54,9 @@ if (process.platform === 'darwin') {
 //-------------------------------------------------------------------
 let win;
 
-function sendStatusToWindow(text) {
+function sendStatusToWindow(text, uoption) {
   log.info(text);
-  win.webContents.send('message', text);
+  win.webContents.send('message', text, uoption);
 }
 function createDefaultWindow() {
   win = new BrowserWindow();
@@ -135,7 +135,7 @@ autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
 });
 autoUpdater.on('update-available', (info) => {
-  sendStatusToWindow('Update available...');
+  sendStatusToWindow('Update available...', true);
 });
 autoUpdater.on('update-not-available', (info) => {
   sendStatusToWindow('Update Not Available...');
